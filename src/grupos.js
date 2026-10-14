@@ -31,7 +31,7 @@ const GRUPOS = [
     evento: {
       anio: "2026",
       objetivo: 200,
-      fechaInicio: "14/10/2026",
+      fechaInicio: "15/10/2026",
       fechaWebinar: "22/10/2026",
       asesores: [
         { id: "15756412", nombre: "Mario Rosado" },

@@ -1219,7 +1219,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       var h = $("#" + id).parentNode.querySelector(".panel-head h2");
       if (h) h.textContent = titulos[id];
     });
-    var notas = ["Últimos 14 días", "Atribución", "Top 8"];
+    var notas = [m.c.fechaInicio && m.c.fechaWebinar ? "Desde el " + dfCorta.format(m.c.fechaInicio) : "Últimos 14 días", "Atribución", "Top 8"];
     Array.prototype.forEach.call(document.querySelectorAll("[data-periodo]"), function (n, i) {
       n.textContent = notas[i] || "";
     });
@@ -1232,10 +1232,19 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       var k = cFecha >= 0 ? esc(r[cFecha]).slice(0, 10) : "";
       if (k) porDia[k] = (porDia[k] || 0) + 1;
     });
+    // Con fechas configuradas, un renglón por día de captación (inicio → webinar);
+    // si no, los últimos 14 días.
     var dias = [];
-    for (var i = 13; i >= 0; i--) {
-      var d = new Date(today().getTime() - i * 86400000);
-      dias.push({ label: dfDia.format(d), value: porDia[toISO(d)] || 0 });
+    var ini = m.c.fechaInicio, fin = m.c.fechaWebinar;
+    if (ini && fin && fin >= ini) {
+      for (var d0 = new Date(ini); d0 <= fin; d0.setDate(d0.getDate() + 1)) {
+        dias.push({ label: dfDia.format(d0), value: porDia[toISO(d0)] || 0 });
+      }
+    } else {
+      for (var i = 13; i >= 0; i--) {
+        var d = new Date(today().getTime() - i * 86400000);
+        dias.push({ label: dfDia.format(d), value: porDia[toISO(d)] || 0 });
+      }
     }
     var bb = $("#botonBody");
     bb.textContent = "";
