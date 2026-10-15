@@ -23,7 +23,7 @@ const GRUPOS = [
     claveLocal: "webinar-thepalms-objetivos",
     asesoresPorId: {
       15756412: "Mario Rosado",
-      15899344: "Patricia Torres",
+      15899344: "Patricia Torres", // dada de baja del webinar; se queda solo para nombrar sus leads
       15898832: "Lesfer López",
       15887432: "Sofía Morocoima",
     },
@@ -35,15 +35,13 @@ const GRUPOS = [
       fechaWebinar: "22/10/2026",
       asesores: [
         { id: "15756412", nombre: "Mario Rosado" },
-        { id: "15899344", nombre: "Patricia Torres" },
         { id: "15898832", nombre: "Lesfer López" },
         { id: "15887432", nombre: "Sofía Morocoima" },
       ],
       metas: {
-        "Mario Rosado": 50,
-        "Patricia Torres": 50,
-        "Lesfer López": 50,
-        "Sofía Morocoima": 50,
+        "Mario Rosado": 67,
+        "Lesfer López": 67,
+        "Sofía Morocoima": 66,
       },
     },
     hojas: [
