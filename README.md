@@ -5,10 +5,11 @@ Lo que está en la raíz se publica en GitHub Pages.
 
 La página es un solo archivo estático. Cada 60 segundos pide los registros a un
 endpoint de n8n (`ZEBRA | THEPALMS | Panel webinar · datos`), que consulta
-Postgres en ese momento: `"Samuel Maya"."17_webinar_smaya"` cruzada con
-`"The Palms"."02_entrada_leads_thepalms"` (nombre, campaña, atribución) y
-`rr.asesores` (nombre del asesor). Nada se copia ni se guarda aquí: lo que se
-pega en Postgres aparece en el panel al minuto siguiente.
+Kommo en ese momento: cada lead que entró a la etapa WEBINAR del embudo
+Liner IA desde el 14 oct 2026 (con su nombre, campaña y atribución) y
+`rr.asesores` para el nombre del asesor. Nada se copia ni se guarda aquí: un
+lead que se mueve a WEBINAR aparece en el panel al minuto siguiente, y sigue
+contando aunque después cambie de etapa.
 
 ## Regenerar
 

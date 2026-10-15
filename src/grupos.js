@@ -3,9 +3,9 @@
  * `panel-fuente.html` no sabe de qué grupo se trata: todo vive aquí.
  *
  * No hay Google Sheets: un workflow de n8n ("ZEBRA | THEPALMS | Panel webinar
- * · datos") consulta Postgres en cada lectura y devuelve los registros de
- * "Samuel Maya"."17_webinar_smaya" ya cruzados con 02_entrada_leads_thepalms
- * y rr.asesores. El panel lo pide cada minuto.
+ * · datos") consulta Kommo en cada lectura y devuelve los leads que entraron a
+ * la etapa WEBINAR (embudo Liner IA) desde el 14 oct, con su asesor de
+ * rr.asesores. El panel lo pide cada minuto.
  */
 
 const GRUPOS = [
@@ -15,10 +15,10 @@ const GRUPOS = [
     titulo: "Webinar The Palms",
     marca: "TP",
     subtitulo: "22 oct 2026 · 8:00 PM",
-    archivo: "Postgres · Samuel Maya.17_webinar_smaya",
+    archivo: "Kommo · etapa WEBINAR (Liner IA)",
     hora: "8:00 PM",
     api: "https://n8n-n8n.9qd6cz.easypanel.host/webhook/thepalms-webinar?k=686f057d04d53bd346401044",
-    fuenteNombre: "Postgres · 17_webinar_smaya",
+    fuenteNombre: "Kommo · etapa WEBINAR",
     etiquetaRegistros: "Registros al webinar",
     claveLocal: "webinar-thepalms-objetivos",
     asesoresPorId: {

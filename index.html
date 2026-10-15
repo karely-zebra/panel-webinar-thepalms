@@ -9,11 +9,11 @@
 <style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script>window.__PANEL_WEB__ = {
   "cfg": {
-    "version": "20261014T230647",
+    "version": "20261015T213400",
     "titulo": "Webinar The Palms",
     "marca": "TP",
     "subtitulo": "22 oct 2026 · 8:00 PM",
-    "archivo": "Postgres · Samuel Maya.17_webinar_smaya",
+    "archivo": "Kommo · etapa WEBINAR (Liner IA)",
     "hora": "8:00 PM",
     "formulario": "",
     "pauta": null,
@@ -39,7 +39,7 @@
       }
     ],
     "api": "https://n8n-n8n.9qd6cz.easypanel.host/webhook/thepalms-webinar?k=686f057d04d53bd346401044",
-    "fuenteNombre": "Postgres · 17_webinar_smaya",
+    "fuenteNombre": "Kommo · etapa WEBINAR",
     "evento": {
       "anio": "2026",
       "objetivo": 200,
@@ -1847,7 +1847,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
   }
 
   function refrescarApi() {
-    setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo Postgres…");
+    setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo registros…");
     fetch(CFG.api + (CFG.api.indexOf("?") >= 0 ? "&" : "?") + "_=" + Date.now(), { cache: "no-store" })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
@@ -1863,7 +1863,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       })
       .catch(function (e) {
         setStatus("error", state.sheetCfg ? "Dato anterior" : "Sin datos");
-        showBanner("warn", "No se pudo leer Postgres",
+        showBanner("warn", "No se pudieron leer los registros",
           "El endpoint de n8n respondió: " + e.message + ". Revisa que el workflow “" + (CFG.fuenteNombre || "Panel webinar · datos") + "” esté activo.",
           "Reintentar", refrescarWeb);
       });
