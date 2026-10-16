@@ -11,6 +11,11 @@ Liner IA desde el 14 oct 2026 (con su nombre, campaña y atribución) y
 lead que se mueve a WEBINAR aparece en el panel al minuto siguiente, y sigue
 contando aunque después cambie de etapa.
 
+Aparte, la tabla **Formulario WEBINAR** lista los leads que llegaron por el
+formulario del webinar: los de `"Samuel Maya"."02_entrada_leads_smaya"` con
+Estrategia = Webinar. Se miden por separado y no suman al objetivo de
+registros.
+
 ## Regenerar
 
     cd src && node build-web.js

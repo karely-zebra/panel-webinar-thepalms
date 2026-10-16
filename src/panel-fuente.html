@@ -935,6 +935,11 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       if (cCamp >= 0 && esc(r[cCamp]).trim()) conCampana++;
     });
 
+    // Leads que llegaron por el formulario del webinar: se miden aparte y no suman al objetivo.
+    var form = state.tabs[hojaConRol("formulario")] || { header: [], rows: [] };
+    var cFechaF = colIdx(form, /^fecha/i), formHoy = 0;
+    form.rows.forEach(function (r) { if (cFechaF >= 0 && esc(r[cFechaF]).slice(0, 10) === kHoy) formHoy++; });
+
     var asesores = (state.sheetCfg && state.sheetCfg.asesores || []).map(function (a) {
       return { nombre: a.nombre, registros: porAsesor[norm(a.nombre)] || 0, objetivo: c.objetivoDe(a.nombre) };
     });
@@ -950,6 +955,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       esperado: esperado, ritmoReq: ritmoReq, ritmoActual: ritmoActual, proyeccion: proyeccion,
       tone: tone, asesores: asesores, sinAsignar: sinAsignar,
       hoy: hoy, ayer: ayer, conCampana: conCampana,
+      formulario: form.rows.length, formHoy: formHoy,
       activos: asesores.filter(function (a) { return a.registros > 0; }).length
     };
   }
@@ -1081,6 +1087,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       { v: m.registros, l: CFG.etiquetaRegistros || "Registros del formulario", n: CFG.api ? (CFG.fuenteNombre || "Postgres") : "Hoja " + (hojaConRol("registros") || "—"), rail: m.c.objetivo ? m.registros / m.c.objetivo : 0, color: "var(--c1)" },
       { v: m.leadsCamp, l: "Leads de campañas", n: hojasConRol("campanas").join(" + ") || "Sin hoja de campañas", rail: m.c.objetivo ? m.leadsCamp / m.c.objetivo : 0, color: "var(--c2)", rol: "campanas" },
       { v: m.difusiones, l: "Difusiones registradas", n: "Hoja " + (hojaConRol("difusiones") || "—") + (PERIODO.key ? (state.soloPeriodo ? " · " + PERIODO.label : " · histórico completo") : ""), rail: 0, color: "var(--c3)", rol: "difusiones" },
+      { v: m.formulario, l: CFG.etiquetaFormulario || "Leads del formulario", n: nf.format(m.formHoy) + " hoy · tabla " + (hojaConRol("formulario") || "—"), rail: 0, color: "var(--c3)", rol: "formulario" },
       { v: m.hoy, l: "Registros de hoy", n: m.ayer + " ayer", rail: 0, color: "var(--c2)", soloSin: "difusiones" },
       { v: m.conCampana, l: "Con campaña identificada", n: m.registros ? nf1.format((m.conCampana / m.registros) * 100) + "% de los registros" : "Sin registros aún", rail: m.registros ? m.conCampana / m.registros : 0, color: "var(--c3)", soloSin: "difusiones" },
       { v: m.activos + " / " + m.asesores.length, l: "Asesores con registros", n: m.sinAsignar ? nf.format(m.sinAsignar) + " sin asesor reconocido" : "Todos los registros asignados", rail: m.asesores.length ? m.activos / m.asesores.length : 0, color: "var(--ink-2)" }
@@ -1761,6 +1768,12 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var grids = {};
     grids[hojaConRol("general") || "General"] = general;
     grids[hojaConRol("registros") || "Registros"] = registros;
+    var hf = hojaConRol("formulario");
+    if (hf && json.formulario) {
+      grids[hf] = [(json.formulario.columnas || []).map(esc)].concat((json.formulario.registros || []).map(function (r) {
+        return r.map(esc);
+      }));
+    }
     return grids;
   }
 

@@ -20,6 +20,8 @@ const GRUPOS = [
     api: "https://n8n-n8n.9qd6cz.easypanel.host/webhook/thepalms-webinar?k=686f057d04d53bd346401044",
     fuenteNombre: "Kommo · etapa WEBINAR",
     etiquetaRegistros: "Registros al webinar",
+    // Leads de 02_entrada_leads_smaya con Estrategia = Webinar (formulario del webinar).
+    etiquetaFormulario: "Leads del formulario WEBINAR",
     claveLocal: "webinar-thepalms-objetivos",
     asesoresPorId: {
       15756412: "Mario Rosado",
@@ -47,6 +49,7 @@ const GRUPOS = [
     hojas: [
       { nombre: "General", rol: "general" },
       { nombre: "Registros", rol: "registros" },
+      { nombre: "Formulario WEBINAR", rol: "formulario" },
     ],
   },
 ];

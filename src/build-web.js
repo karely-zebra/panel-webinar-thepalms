@@ -60,6 +60,7 @@ function construir(grupo, overrides, version) {
     fuenteNombre: grupo.fuenteNombre || "",
     evento: grupo.evento || null,
     etiquetaRegistros: grupo.etiquetaRegistros || "",
+    etiquetaFormulario: grupo.etiquetaFormulario || "",
     claveLocal: grupo.claveLocal || "",
   };
 
